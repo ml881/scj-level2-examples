@@ -1,0 +1,27 @@
+=========================================================================
+SCJ with JML,  HSO January 2014
+=========================================================================
+
+
+0) Directory:
+cd /home/hso/java/SCJ_Workspace/icecapSDK
+
+1)Generate test classes by running JMLUnitNG,
+here generating for javax.realtime.AperiodicParameters.java
+
+java -jar /home/hso/java/SCJ_Workspace/JML/jmlunitng.jar 
+     --dest /home/hso/java/SCJ_Workspace/icecapSDK/src/jml
+     --package 
+     -cp /home/hso/java/SCJ_Workspace/JML/jmlunitng.jar:/home/hso/java/SCJ_Workspace/JML/jml4c.jar:./src 
+     src/javax/realtime/AperiodicParameters.java
+
+On one line:
+java -jar /home/hso/java/SCJ_Workspace/JML/jmlunitng.jar --dest /home/hso/java/SCJ_Workspace/icecapSDK/src/jml --package -cp /home/hso/java/SCJ_Workspace/JML/jmlunitng.jar:/home/hso/java/SCJ_Workspace/JML/jml4c.jar:./src src/javax/realtime/AperiodicParameters.java
+
+2) Compile the classes under test
+
+java -jar /home/hso/java/SCJ_Workspace/JML/jml4c.jar 
+     -cp /home/hso/java/SCJ_Workspace/JML/jml4c.jar:./src 
+     src/javax/realtime/AperiodicParameters.java
+
+     

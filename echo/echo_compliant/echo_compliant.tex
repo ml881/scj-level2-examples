@@ -1,0 +1,73 @@
+\documentclass[10pt,a4paper,final]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\lstset{ %
+language=Java,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+%backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+\pagestyle{myheadings}
+\markright{Echo Compliant}
+
+
+\begin{document}
+
+\section{EchoApplication}
+\lstinputlisting[language=Java]{EchoApplication.java}
+\pagebreak
+
+\section{EchoMissionSequencer}
+\lstinputlisting[language=Java]{EchoMissionSequencer.java}
+\pagebreak
+
+\section{EchoMission}
+\lstinputlisting[language=Java]{EchoMission.java}
+\pagebreak
+
+\section{EchoInputMissionSequencer}
+\lstinputlisting[language=Java]{EchoInputMissionSequencer.java}
+\pagebreak
+
+\section{EchoInputMission}
+\lstinputlisting[language=Java]{EchoInputMission.java}
+\pagebreak
+
+\section{EchoInputter}
+\lstinputlisting[language=Java]{EchoInputter.java}
+\pagebreak
+
+
+\section{EchoOutputMissionSequencer}
+\lstinputlisting[language=Java]{EchoOutputMissionSequencer.java}
+\pagebreak
+
+\section{EchoOutputMission}
+\lstinputlisting[language=Java]{EchoOutputMission.java}
+\pagebreak
+
+\section{EchoOutputter}
+\lstinputlisting[language=Java]{EchoOutputter.java}
+\pagebreak
+
+\end{document}
