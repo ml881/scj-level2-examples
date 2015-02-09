@@ -16,17 +16,18 @@ import devices.Console;
  * begin cruising
  * 
  * @author Matt Luckcuck
- *
+ * 
  */
 public class CruiseConditionsMonitor extends PeriodicEventHandler
 {
 	/**
-	 * The controlling mission 
+	 * The controlling mission
 	 */
 	private final CruiseMission mission;
-	
+
 	/**
-	 * The count of times this handler will be released before terminating the controlling mission
+	 * The count of times this handler will be released before terminating the
+	 * controlling mission
 	 */
 	private int count = 5;
 
@@ -44,22 +45,18 @@ public class CruiseConditionsMonitor extends PeriodicEventHandler
 	@Override
 	public void handleAsyncEvent()
 	{
-		Console.println("***Checking Cruise Conditions***");
+		Console.println("Checking Cruise Conditions");
 		// Check sensors to make sure an engine burn is safe
-		
-		
+
 		if (count == 0)
 		{
 			Console.println("CruiseConditionsMonitor: Terminating");
 			mission.requestTermination();
-		}
-		else
+		} else
 		{
 			Console.println("CruiseConditionsMonitor: " + count);
 			mission.setOkToCruise(true);
 			count--;
 		}
-	
 	}
-
 }

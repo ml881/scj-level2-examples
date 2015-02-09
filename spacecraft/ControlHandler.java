@@ -40,6 +40,6 @@ public class ControlHandler extends AperiodicEventHandler
 	public void handleAsyncEvent()
 	{
 		Console.println("Handling Controls");
+		// Actually handle input from the controls
 	}
-
 }

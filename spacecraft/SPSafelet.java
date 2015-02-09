@@ -41,12 +41,8 @@ public class SPSafelet implements Safelet<Mission>
 	public void initializeApplication()
 	{
 		Console.println("SPSafelet: Init");
-//		 storageParameters = new StorageParameters(150 * 1000, new long[] { Const.HANDLER_STACK_SIZE },
-//				 Const.PRIVATE_MEM_SIZE-25*1000, Const.IMMORTAL_MEM_SIZE-50*1000, Const.MISSION_MEM_SIZE-100*1000);
-//				
-//		storageParameters_Schedulable = new StorageParameters(Const.PRIVATE_MEM_SIZE-30*1000, new long[] { Const.HANDLER_STACK_SIZE },
-//				 Const.PRIVATE_MEM_SIZE-30*1000, Const.IMMORTAL_MEM_SIZE-50*1000, Const.MISSION_MEM_SIZE-100*1000);
-		
+
+		//These memory parameters are basically the defaults. Set correct memory parameters.
 		 storageParameters_topLevelSequencer = new StorageParameters(Const.BACKING_STORE_SIZE-1000000 , new long[] { Const.HANDLER_STACK_SIZE },
 				Const.PRIVATE_MEM_SIZE_DEFAULT , 10000*2, Const.MISSION_MEM_SIZE_DEFAULT);
 		 
@@ -55,15 +51,6 @@ public class SPSafelet implements Safelet<Mission>
 		
 		 storageParameters_Schedulable = new StorageParameters(Const.BACKING_STORE_SIZE/10, new long[] { Const.HANDLER_STACK_SIZE },
 					Const.PRIVATE_MEM_SIZE_DEFAULT , 10000, Const.MISSION_MEM_SIZE_DEFAULT);
-		
-		
-		
-//		storageParametersSchedulable = new StorageParameters(
-//				Const.BACKING_STORE_SIZE ,
-//				new long[] { Const.HANDLER_STACK_SIZE },
-//				Const.PRIVATE_MEM_SIZE_DEFAULT,
-//				Const.IMMORTAL_MEM_SIZE_DEFAULT,
-//				Const.MISSION_MEM_SIZE_DEFAULT  );
 		 
 		 Console.println("SPSafelet: Begin");
 	}

@@ -49,7 +49,7 @@ public class LaunchMission extends Mission implements Mode
 	protected void initialize()
 	{
 		Console.println("Launch Mission: Init ");
-		
+
 		// Initially false because the conditions haven't been checked yet
 		launch = false;
 
@@ -58,8 +58,8 @@ public class LaunchMission extends Mission implements Mode
 		// can update the
 		// ready to launch variable with the two methods above
 		LaunchConditionsMonitor launchConditionsMonitor = new LaunchConditionsMonitor(
-				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0),
-						new RelativeTime(500, 0)),
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(500, 0)),
 				SPSafelet.storageParameters_Schedulable, this);
 		launchConditionsMonitor.register();
 
@@ -69,13 +69,12 @@ public class LaunchMission extends Mission implements Mode
 		launchHandler.register();
 
 		LaunchCountdown launchCountdown = new LaunchCountdown(
-				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0),
-						new RelativeTime(1000, 0)),
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(1000, 0)),
 				SPSafelet.storageParameters_Schedulable, 5, launchHandler);
 		launchCountdown.register();
 
-		
-		Console.println("Launch Mission: Begin ");	
+		Console.println("Launch Mission: Begin ");
 	}
 
 	/**
@@ -86,5 +85,4 @@ public class LaunchMission extends Mission implements Mode
 	{
 		return Const.MISSION_MEM_SIZE_DEFAULT;
 	}
-
 }

@@ -20,7 +20,7 @@ public class LaunchCountdown extends PeriodicEventHandler
 	 * The Aperiodic Event Handler to be released
 	 */
 	private final AperiodicEventHandler aperiodic;
-	
+
 	/**
 	 * The starting value of the countdown
 	 */
@@ -48,7 +48,7 @@ public class LaunchCountdown extends PeriodicEventHandler
 	{
 		super(priority, periodic, storage);
 		Console.println("LaunchCountdown: Construct");
-		
+
 		aperiodic = ae;
 		this.countdown = countdown;
 	}
@@ -68,8 +68,7 @@ public class LaunchCountdown extends PeriodicEventHandler
 			Console.println("" + countdown);
 			Console.println("Launching");
 			aperiodic.release();
-		}
-		else
+		} else
 		{
 			Console.println("" + countdown);
 			countdown--;

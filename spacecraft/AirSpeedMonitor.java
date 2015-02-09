@@ -18,6 +18,7 @@ public class AirSpeedMonitor extends PeriodicEventHandler
 	/**
 	 * A reference to this handler's controlling mission
 	 */
+	@SuppressWarnings("unused")
 	private final LandMission mission;
 
 	/**
@@ -51,7 +52,7 @@ public class AirSpeedMonitor extends PeriodicEventHandler
 	public void handleAsyncEvent()
 	{
 		Console.println("AirSpeedMonitor: check Air Speed");
-		mission.setAirSpeed(0.0);
+		//Actually check the air speed sensor and update the main mission
 	}
 
 }

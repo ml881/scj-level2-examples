@@ -20,12 +20,12 @@ public class LaunchConditionsMonitor extends PeriodicEventHandler
 	 * Controlling mission
 	 */
 	private final LaunchMission launchMission;
+
 	/**
 	 * This variable is for testing only and indicates the amount of releases
 	 * the handler will have before the launch conditions are 'good enough' to
 	 * be true
 	 */
-		
 
 	/**
 	 * Class Constructor
@@ -46,7 +46,7 @@ public class LaunchConditionsMonitor extends PeriodicEventHandler
 			LaunchMission launchMission)
 	{
 		super(priority, periodic, storage);
-		
+
 		Console.println("LaunchConditionsMonitor: Construct");
 		this.launchMission = launchMission;
 	}
@@ -58,11 +58,8 @@ public class LaunchConditionsMonitor extends PeriodicEventHandler
 	public void handleAsyncEvent()
 	{
 		Console.println("Checking Launch Conditions");
-		//This would check the launch conditions from sensors 
-		
+		// This would check the launch conditions from sensors
+
 		launchMission.goodToLaunch();
-		
-
 	}
-
 }

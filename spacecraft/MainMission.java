@@ -27,37 +27,29 @@ public class MainMission extends Mission
 	{
 		Console.println("Main Mission: Init ");
 
-		
-
-		// Load the submission sequencer and persistent handlers
-		SPModeChanger sPModeChanger = new SPModeChanger(new PriorityParameters(5),
-				SPSafelet.storageParameters_nestedSequencer, this);
+		// Load the nested mission sequencer and persistent handlers
+		SPModeChanger sPModeChanger = new SPModeChanger(new PriorityParameters(
+				5), SPSafelet.storageParameters_nestedSequencer, this);
 
 		sPModeChanger.register();
 
-		
-
 		EnvironmentMonitor environmentMonitor = new EnvironmentMonitor(
-				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0),
-						new RelativeTime(1000, 0)),
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(1000, 0)),
 				SPSafelet.storageParameters_Schedulable, this);
 		environmentMonitor.register();
-
-		
 
 		ControlHandler controlHandler = new ControlHandler(
 				new PriorityParameters(5), new AperiodicParameters(),
 				SPSafelet.storageParameters_Schedulable);
 		controlHandler.register();
 
-		
+		AperiodicSimulator controlSim = new AperiodicSimulator(
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(100, 0)),
+				SPSafelet.storageParameters_Schedulable, controlHandler);
+		controlSim.register();
 
-//		AperiodicSimulator controlSim = new AperiodicSimulator(
-//				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0),
-//						new RelativeTime(100, 0)),
-//				SPSafelet.storageParameters_Schedulable, controlHandler);
-//		controlSim.register();
-		
 		Console.println("Main Mission: Begin ");
 	}
 
@@ -77,5 +69,4 @@ public class MainMission extends Mission
 		Console.println("Envrionment Bad");
 
 	}
-
 }

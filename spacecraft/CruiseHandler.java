@@ -1,5 +1,7 @@
 /** Spacecraft - Mode Change Example
  * 
+ * 	Handler for responding to the pilot starting an engine burn
+ * 	
  *   @author Matt Luckcuck <ml881@york.ac.uk>
  */
 package scjlevel2examples.spacecraft;
@@ -9,7 +11,8 @@ import javax.realtime.PriorityParameters;
 import javax.safetycritical.AperiodicEventHandler;
 import javax.safetycritical.StorageParameters;
 
-//Handler for responding to the pilot starting an engine burn
+import devices.Console;
+
 public class CruiseHandler extends AperiodicEventHandler
 {
 	/**
@@ -37,8 +40,7 @@ public class CruiseHandler extends AperiodicEventHandler
 	@Override
 	public void handleAsyncEvent()
 	{
-		System.out.println("Handling Cruise");
-
+		Console.println("Handling Cruise");
+		// Activate the engine burn
 	}
-
 }

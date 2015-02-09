@@ -1,5 +1,8 @@
 /** Spacecraft - Mode Change Example
  * 
+ * This class is not a component of the pattern or the example application,
+ * it is plumbing only.
+ * 
  * This class simulates the aperiodic firing of an 
  * external event (e.g. a button press) by simply firing the event periodically
  * 

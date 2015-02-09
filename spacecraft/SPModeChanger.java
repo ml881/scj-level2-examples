@@ -45,9 +45,9 @@ public class SPModeChanger extends MissionSequencer<Mission> implements
 		super(priority, storage);
 		Console.println("Mode Changer: Construct ");
 		
-		launchMode = (Mode) new LaunchMission();
-		cruiseMode = (Mode) new CruiseMission();
-		landMode = (Mode) new LandMission();
+		launchMode = new LaunchMission();
+		cruiseMode = new CruiseMission();
+		landMode = new LandMission();
 
 		this.controllingMission = controllingMission;
 	}
@@ -55,6 +55,7 @@ public class SPModeChanger extends MissionSequencer<Mission> implements
 	/**
 	 * Change the mode to given mode
 	 */
+	@Override
 	public synchronized void changeTo(Mode newMode)
 	{
 		currentMode = newMode;
@@ -64,6 +65,7 @@ public class SPModeChanger extends MissionSequencer<Mission> implements
 	/**
 	 * Advance the mode to the next mode
 	 */
+	@Override
 	public synchronized void advanceMode()
 	{
 		Console.println("Mode Changer: Advance To Next Mode");

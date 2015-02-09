@@ -55,9 +55,7 @@ public class GroundDistanceMonitor extends PeriodicEventHandler
 	{
 		Console.println("GroundDistanceMonitor: Checking Ground Distance");
 		// read this value from sensors
-			
-		
-//		mission.setGroundDistance(groundDistance);
+
 		
 		if (groundDistance <= 0.0)
 		{
@@ -69,7 +67,5 @@ public class GroundDistanceMonitor extends PeriodicEventHandler
 			Console.println("GroundDistanceMonitor: ground distance is " + groundDistance);
 			groundDistance = groundDistance - 2;
 		}
-
 	}
-
 }

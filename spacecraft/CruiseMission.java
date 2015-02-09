@@ -7,6 +7,7 @@
  */
 package scjlevel2examples.spacecraft;
 
+import javax.realtime.AperiodicParameters;
 import javax.realtime.Clock;
 import javax.realtime.PeriodicParameters;
 import javax.realtime.PriorityParameters;
@@ -32,9 +33,9 @@ public class CruiseMission extends Mission implements Mode
 	@Override
 	protected void initialize()
 	{
-		
+
 		Console.println("Cruise Mission: Init ");
-		
+
 		/**
 		 * Then length of time to burn the engines for
 		 */
@@ -45,34 +46,37 @@ public class CruiseMission extends Mission implements Mode
 		 * <code>okToCruise</code>
 		 */
 		CruiseConditionsMonitor crusieConditionsMonitor = new CruiseConditionsMonitor(
-				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0), new RelativeTime(500, 0)),
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(500, 0)),
 				SPSafelet.storageParameters_Schedulable, this);
 		crusieConditionsMonitor.register();
 
 		/**
 		 * Handler for responding to the burn being activated
 		 */
-//		BurnActivationHandler burnActivationHandler = new BurnActivationHandler(
-//				new PriorityParameters(5), new AperiodicParameters(),
-//				SPSafelet.storageParameters_Schedulable,	this);
-//		burnActivationHandler.register();
+		BurnActivationHandler burnActivationHandler = new BurnActivationHandler(
+				new PriorityParameters(5), new AperiodicParameters(
+						new RelativeTime(0, 0), null),
+				SPSafelet.storageParameters_Schedulable, this);
+		burnActivationHandler.register();
 
 		/**
 		 * Handler for activating the engine burn when requested
 		 */
-//		BurnDurationHandler burnDurationHandler = new BurnDurationHandler(
-//				new PriorityParameters(5), new AperiodicParameters(),
-//				SPSafelet.storageParameters_Schedulable,	this);
-//		burnDurationHandler.register();
+		BurnDurationHandler burnDurationHandler = new BurnDurationHandler(
+				new PriorityParameters(5), new AperiodicParameters(
+						new RelativeTime(0, 0), null),
+				SPSafelet.storageParameters_Schedulable, this);
+		burnDurationHandler.register();
 		/**
 		 * Handler simulating a button push to activate the burn
 		 */
-//		AperiodicSimulator cruiseSim = new AperiodicSimulator(
-//				new PriorityParameters(5), new PeriodicParameters(new RelativeTime(0,0),
-//						new RelativeTime(100, 0)),
-//				SPSafelet.storageParameters_Schedulable, burnActivationHandler);
-//		cruiseSim.register();
-		
+		AperiodicSimulator cruiseSim = new AperiodicSimulator(
+				new PriorityParameters(5), new PeriodicParameters(
+						new RelativeTime(0, 0), new RelativeTime(100, 0)),
+				SPSafelet.storageParameters_Schedulable, burnActivationHandler);
+		cruiseSim.register();
+
 		Console.println("Cruise Mission: Begin ");
 	}
 
@@ -128,5 +132,4 @@ public class CruiseMission extends Mission implements Mode
 		// actually activate the engines here
 		Services.delay(Clock.getRealtimeClock().getTime().add(burnDuration));
 	}
-
 }

@@ -38,9 +38,9 @@ public class LaunchHandler extends AperiodicEventHandler
 			AperiodicParameters release, StorageParameters storage,
 			LaunchMission launchMission)
 	{
-//		super(priority, release, storage);
+		// super(priority, release, storage);
 		super(priority, release, storage, "Laucnh Handler");
-		
+
 		Console.println("LaunchHandler: Construct");
 		this.launchMission = launchMission;
 	}
@@ -55,17 +55,15 @@ public class LaunchHandler extends AperiodicEventHandler
 		// for testing, here the launch mission is just terminated
 		// else the handler waits for it's next release and checks again
 		Console.println("LaunchHandler: LaunchHandler");
-		
+
 		if (launchMission.canLaunch())
 		{
 			Console.println("LaunchHandler: Launching!");
-			
+
 			launchMission.requestTermination();
-		}
-		else
+		} else
 		{
 			Console.println("LaunchHandler: Launch Blocked!");
 		}
 	}
-
 }

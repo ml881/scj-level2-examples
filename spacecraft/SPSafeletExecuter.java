@@ -10,9 +10,7 @@ import javax.safetycritical.Launcher;
 import javax.safetycritical.Mission;
 import javax.safetycritical.Safelet;
 
-
 import devices.Console;
-
 
 public class SPSafeletExecuter extends Launcher
 {
@@ -32,12 +30,7 @@ public class SPSafeletExecuter extends Launcher
 	 */
 	public static void main(String[] args)
 	{
-//		Const.PRIVATE_BACKING_STORE=16000000 ;
-//		Const.IMMORTAL_MEM_SIZE = Const.BACKING_STORE_SIZE /2 ;
-				
-				
 		Console.println("Launcher");
-		
 		new SPSafeletExecuter(new SPSafelet()).run();
 	}
 }

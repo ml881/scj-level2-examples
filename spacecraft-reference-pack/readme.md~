@@ -10,7 +10,7 @@ DISCLAIMER
 
 The memory parameters in this reference example are defaults and therefore it does not run correctly. 
 
-Becasue there is no Level 2 implementation, this application will not run. It is provided as a reference of the structure of an application using the multiple mode pattern.
+Becasue there is no Level 2 implementation, this application will not run. It is provided only as a reference of the structure of an application using the multiple mode pattern.
 
 The program was compiled using the [Icecap ]{http://icelab.dk} implementation of SCJ provided in this directory (as the provided version is no longer available from the Icecap website).
 

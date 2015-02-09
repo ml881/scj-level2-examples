@@ -11,6 +11,8 @@ import javax.realtime.PriorityParameters;
 import javax.safetycritical.AperiodicEventHandler;
 import javax.safetycritical.StorageParameters;
 
+import devices.Console;
+
 public class BurnActivationHandler extends AperiodicEventHandler
 {
 	/**
@@ -53,12 +55,11 @@ public class BurnActivationHandler extends AperiodicEventHandler
 	{
 		if (mission.isOkToCruise())
 		{
-			System.out.println("Activate Burn");
+			Console.println("Activate Burn");
 			mission.activateBurn();
-		}
-		else
+		} else
 		{
-			System.out.println("Burn Blocked");
+			Console.println("Burn Blocked");
 		}
 
 	}
