@@ -30,7 +30,8 @@ public class ControlHandler extends AperiodicEventHandler
 	public ControlHandler(PriorityParameters priority,
 			AperiodicParameters release, StorageParameters storage)
 	{
-		super(priority, release, storage, "Control Handler");
+//		super(priority, release, storage, "Control Handler");
+		super(priority, release, storage);
 	}
 
 	/**

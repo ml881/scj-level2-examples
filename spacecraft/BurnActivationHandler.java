@@ -38,8 +38,8 @@ public class BurnActivationHandler extends AperiodicEventHandler
 			AperiodicParameters release, StorageParameters storage,
 			CruiseMission mission)
 	{
-		super(priority, release, storage, "Burn Activation Handler");
-
+//		super(priority, release, storage, "Burn Activation Handler");
+		super(priority, release, storage);
 		this.mission = mission;
 	}
 
@@ -57,6 +57,7 @@ public class BurnActivationHandler extends AperiodicEventHandler
 		{
 			Console.println("Activate Burn");
 			mission.activateBurn();
+		
 		} else
 		{
 			Console.println("Burn Blocked");

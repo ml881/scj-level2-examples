@@ -21,7 +21,7 @@ public class LaunchMission extends Mission implements Mode
 	 * This variable represents if the craft is able to launch, when the
 	 * countdown reaches 0
 	 */
-	private volatile boolean launch;
+	private volatile boolean launch = true;
 
 	/**
 	 * Called when the craft is ok to launch sets <code>launch</code> to
@@ -51,17 +51,19 @@ public class LaunchMission extends Mission implements Mode
 		Console.println("Launch Mission: Init ");
 
 		// Initially false because the conditions haven't been checked yet
-		launch = false;
+		
+		launch = true;
 
 		// Load the handlers for this mission
 		// Note these handlers are passed a reference to this mission so they
 		// can update the
 		// ready to launch variable with the two methods above
-		LaunchConditionsMonitor launchConditionsMonitor = new LaunchConditionsMonitor(
-				new PriorityParameters(5), new PeriodicParameters(
-						new RelativeTime(0, 0), new RelativeTime(500, 0)),
-				SPSafelet.storageParameters_Schedulable, this);
-		launchConditionsMonitor.register();
+		
+//		LaunchConditionsMonitor launchConditionsMonitor = new LaunchConditionsMonitor(
+//				new PriorityParameters(5), new PeriodicParameters(
+//						new RelativeTime(0, 0), new RelativeTime(500, 0)),
+//				SPSafelet.storageParameters_Schedulable, this);
+//		launchConditionsMonitor.register();
 
 		LaunchHandler launchHandler = new LaunchHandler(new PriorityParameters(
 				5), new AperiodicParameters(),
@@ -83,6 +85,6 @@ public class LaunchMission extends Mission implements Mode
 	@Override
 	public long missionMemorySize()
 	{
-		return Const.MISSION_MEM_SIZE_DEFAULT;
+		return Const.MISSION_MEM_DEFAULT;
 	}
 }

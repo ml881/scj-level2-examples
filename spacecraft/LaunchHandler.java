@@ -39,7 +39,8 @@ public class LaunchHandler extends AperiodicEventHandler
 			LaunchMission launchMission)
 	{
 		// super(priority, release, storage);
-		super(priority, release, storage, "Laucnh Handler");
+//		super(priority, release, storage, "Laucnh Handler");
+		super(priority, release, storage);
 
 		Console.println("LaunchHandler: Construct");
 		this.launchMission = launchMission;

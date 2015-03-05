@@ -46,7 +46,8 @@ public class BurnDurationHandler extends AperiodicEventHandler
 			AperiodicParameters aperiodic, StorageParameters storage,
 			CruiseMission mission)
 	{
-		super(priority, aperiodic, storage, "Burn Duration Handler");
+//		super(priority, aperiodic, storage, "Burn Duration Handler");
+		super(priority, aperiodic, storage);
 		this.mission = mission;
 		nanos = 0;
 		millis = 0;

@@ -35,7 +35,7 @@ public class MainMission extends Mission
 
 		EnvironmentMonitor environmentMonitor = new EnvironmentMonitor(
 				new PriorityParameters(5), new PeriodicParameters(
-						new RelativeTime(0, 0), new RelativeTime(1000, 0)),
+						new RelativeTime(0, 0), new RelativeTime(2000, 0)),
 				SPSafelet.storageParameters_Schedulable, this);
 		environmentMonitor.register();
 
@@ -46,7 +46,7 @@ public class MainMission extends Mission
 
 		AperiodicSimulator controlSim = new AperiodicSimulator(
 				new PriorityParameters(5), new PeriodicParameters(
-						new RelativeTime(0, 0), new RelativeTime(100, 0)),
+						new RelativeTime(0, 0), new RelativeTime(1000, 0)),
 				SPSafelet.storageParameters_Schedulable, controlHandler);
 		controlSim.register();
 
@@ -59,7 +59,7 @@ public class MainMission extends Mission
 	@Override
 	public long missionMemorySize()
 	{
-		return Const.MISSION_MEM_SIZE_DEFAULT;
+		return Const.MISSION_MEM_DEFAULT;
 	}
 
 	public void environmentBad()

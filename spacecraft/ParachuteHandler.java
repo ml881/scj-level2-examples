@@ -38,9 +38,11 @@ public class ParachuteHandler extends AperiodicEventHandler
 			AperiodicParameters aperiodicParameters,
 			StorageParameters storageParameters, LandMission landMission)
 	{
-		super(priorityParameters, aperiodicParameters, storageParameters,
-				"Parachute Handler");
+//		super(priorityParameters, aperiodicParameters, storageParameters,
+//				"Parachute Handler");
 
+		super(priorityParameters, aperiodicParameters, storageParameters);
+		
 		mission = landMission;
 	}
 
@@ -51,6 +53,6 @@ public class ParachuteHandler extends AperiodicEventHandler
 	public void handleAsyncEvent()
 	{
 		Console.println("Parachute Handler");
-		mission.deployParachute();
+//		mission.deployParachute();
 	}
 }

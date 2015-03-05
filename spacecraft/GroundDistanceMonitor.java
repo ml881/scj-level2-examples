@@ -6,6 +6,7 @@ package scjlevel2examples.spacecraft;
 
 import javax.realtime.PeriodicParameters;
 import javax.realtime.PriorityParameters;
+import javax.safetycritical.AperiodicEventHandler;
 import javax.safetycritical.PeriodicEventHandler;
 import javax.safetycritical.StorageParameters;
 
@@ -18,7 +19,8 @@ public class GroundDistanceMonitor extends PeriodicEventHandler
 	 * The controlling mission of this handler
 	 */
 	private final LandMission mission;
-	
+	private final AperiodicEventHandler landingHandler;
+	private final AperiodicEventHandler parachuteHandler;
 	/**
 	 * Distance from the ground, dictates the amount of releases this handler will have before termination
 	 */
@@ -40,11 +42,13 @@ public class GroundDistanceMonitor extends PeriodicEventHandler
 	 */
 	public GroundDistanceMonitor(PriorityParameters priority,
 			PeriodicParameters periodic, StorageParameters storage,
-			LandMission landMission)
+			LandMission landMission, AperiodicEventHandler landingHandler, AperiodicEventHandler parachuteHandler)
 	{
 		super(priority, periodic, storage);
 
 		mission = landMission;
+		this.landingHandler = landingHandler;
+		this.parachuteHandler = parachuteHandler;
 	}
 
 	/**
@@ -63,9 +67,23 @@ public class GroundDistanceMonitor extends PeriodicEventHandler
 			mission.requestTermination();
 		}
 		else
-		{
-			Console.println("GroundDistanceMonitor: ground distance is " + groundDistance);
-			groundDistance = groundDistance - 2;
-		}
+			if (groundDistance == 10)
+			{
+				landingHandler.release();
+				Console.println("GroundDistanceMonitor: ground distance is " + groundDistance);
+				groundDistance = groundDistance - 2;
+			}
+			else if(groundDistance == 2)
+			{
+				parachuteHandler.release();
+				Console.println("GroundDistanceMonitor: ground distance is " + groundDistance);
+				groundDistance = groundDistance - 2;
+			}
+			else
+			
+			{
+				Console.println("GroundDistanceMonitor: ground distance is " + groundDistance);
+				groundDistance = groundDistance - 2;
+			}
 	}
 }

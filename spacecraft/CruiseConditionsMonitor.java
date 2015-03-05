@@ -29,7 +29,7 @@ public class CruiseConditionsMonitor extends PeriodicEventHandler
 	 * The count of times this handler will be released before terminating the
 	 * controlling mission
 	 */
-	private int count = 5;
+	private int count = 10;
 
 	public CruiseConditionsMonitor(PriorityParameters priority,
 			PeriodicParameters periodic, StorageParameters storage,

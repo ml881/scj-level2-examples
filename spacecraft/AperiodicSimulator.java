@@ -53,7 +53,7 @@ public class AperiodicSimulator extends PeriodicEventHandler
 	@Override
 	public void handleAsyncEvent()
 	{
-		Console.println("Simulating AperiodicEvent");
+		Console.println("Simulating AperiodicEvent: "+ aperiodic.toString());
 		aperiodic.release();
 	}
 

@@ -9,6 +9,7 @@ package scjlevel2examples.spacecraft;
 import javax.safetycritical.Launcher;
 import javax.safetycritical.Mission;
 import javax.safetycritical.Safelet;
+import javax.scj.util.Const;
 
 import devices.Console;
 
@@ -31,6 +32,8 @@ public class SPSafeletExecuter extends Launcher
 	public static void main(String[] args)
 	{
 		Console.println("Launcher");
+		Const.OVERALL_BACKING_STORE= 16000000;
+		
 		new SPSafeletExecuter(new SPSafelet()).run();
 	}
 }

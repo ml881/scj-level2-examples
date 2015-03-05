@@ -30,8 +30,8 @@ public class CruiseHandler extends AperiodicEventHandler
 	public CruiseHandler(PriorityParameters priority,
 			AperiodicParameters release, StorageParameters storage)
 	{
-		super(priority, release, storage, "Cruise Handler");
-
+//		super(priority, release, storage, "Cruise Handler");
+		super(priority, release, storage);
 	}
 
 	/**

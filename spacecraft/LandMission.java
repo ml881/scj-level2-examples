@@ -18,25 +18,6 @@ import devices.Console;
 public class LandMission extends Mission implements Mode
 {
 
-	/**
-	 * The craft's distance form the ground in Metres
-	 */
-	private double distanceFromGround;
-	/**
-	 * The craft's airSpeed in Knots
-	 */
-	@SuppressWarnings("unused")
-	private double airSpeed;
-	/**
-	 * Is the parachute deployed?
-	 */
-	@SuppressWarnings("unused")
-	private boolean parachuteDeployed;
-	/**
-	 * Is the landing gear deployed?
-	 */
-	@SuppressWarnings("unused")
-	private boolean LandingGearDeployed;
 
 	/**
 	 * Initialise the mission
@@ -47,12 +28,7 @@ public class LandMission extends Mission implements Mode
 		Console.println("Land Mission: Init ");
 
 		/* ***Start this mission's handlers */
-		GroundDistanceMonitor groundDistanceMonitor = new GroundDistanceMonitor(
-				new PriorityParameters(5), new PeriodicParameters(
-						new RelativeTime(0, 0), new RelativeTime(500, 0)),
-				SPSafelet.storageParameters_Schedulable, this);
-		groundDistanceMonitor.register();
-
+	
 		AirSpeedMonitor airSpeedMonitor = new AirSpeedMonitor(
 				new PriorityParameters(5), new PeriodicParameters(
 						new RelativeTime(0, 0), new RelativeTime(500, 0)),
@@ -71,6 +47,13 @@ public class LandMission extends Mission implements Mode
 		
 		 parachuteHandler.register();
 
+		GroundDistanceMonitor groundDistanceMonitor = new GroundDistanceMonitor(
+					new PriorityParameters(5), new PeriodicParameters(
+							new RelativeTime(0, 0), new RelativeTime(500, 0)),
+					SPSafelet.storageParameters_Schedulable, this, landingHandler, parachuteHandler);
+		groundDistanceMonitor.register();
+
+		 
 		Console.println("Land Mission: Begin ");
 	}
 
@@ -80,53 +63,9 @@ public class LandMission extends Mission implements Mode
 	@Override
 	public long missionMemorySize()
 	{
-		return Const.MISSION_MEM_SIZE_DEFAULT;
+		return Const.MISSION_MEM_DEFAULT;
 	}
 
-	/**
-	 * called when landing gear is deployed, sets
-	 * <code>LandingGearDeployed</code> to <code>true</code>
-	 */
-	public synchronized void deployLandingGear()
-	{
-		LandingGearDeployed = true;
-
-	}
-
-	/**
-	 * sets <code>distanceFromGround<code> to the supplied <code>double</code>
-	 * 
-	 * @param distanceFromGround
-	 *            the distance the craft is from the ground in metres
-	 */
-	public synchronized void setGroundDistance(double distanceFromGround)
-	{
-		this.distanceFromGround = distanceFromGround;
-	}
-
-	/**
-	 * Sets the <code>airSpeed</code> to the supplied <code>double</code>
-	 * 
-	 * @param airSpeed
-	 *            the craft's air speed in knots
-	 */
-	public void setAirSpeed(double airSpeed)
-	{
-		this.airSpeed = airSpeed;
-	}
-
-	/**
-	 * Deploys the parachute
-	 */
-	public void deployParachute()
-	{
-		// Assuming that 0.0 IS wheels on the run way
-		// This would likely be a helper method
-		if (distanceFromGround == 0.0)
-		{
-			// actually deploy parachute then set this variable
-			parachuteDeployed = true;
-		}
-	}
+	
 
 }

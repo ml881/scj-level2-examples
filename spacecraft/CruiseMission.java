@@ -8,12 +8,12 @@
 package scjlevel2examples.spacecraft;
 
 import javax.realtime.AperiodicParameters;
-import javax.realtime.Clock;
+
 import javax.realtime.PeriodicParameters;
 import javax.realtime.PriorityParameters;
 import javax.realtime.RelativeTime;
 import javax.safetycritical.Mission;
-import javax.safetycritical.Services;
+
 import javax.scj.util.Const;
 
 import devices.Console;
@@ -68,12 +68,13 @@ public class CruiseMission extends Mission implements Mode
 						new RelativeTime(0, 0), null),
 				SPSafelet.storageParameters_Schedulable, this);
 		burnDurationHandler.register();
+		
 		/**
 		 * Handler simulating a button push to activate the burn
 		 */
 		AperiodicSimulator cruiseSim = new AperiodicSimulator(
 				new PriorityParameters(5), new PeriodicParameters(
-						new RelativeTime(0, 0), new RelativeTime(100, 0)),
+						new RelativeTime(0, 0), new RelativeTime(2000, 0)),
 				SPSafelet.storageParameters_Schedulable, burnActivationHandler);
 		cruiseSim.register();
 
@@ -86,7 +87,7 @@ public class CruiseMission extends Mission implements Mode
 	@Override
 	public long missionMemorySize()
 	{
-		return Const.MISSION_MEM_SIZE_DEFAULT;
+		return Const.MISSION_MEM_DEFAULT;
 	}
 
 	/**
@@ -130,6 +131,5 @@ public class CruiseMission extends Mission implements Mode
 	{
 		Console.println("Burning Engines!");
 		// actually activate the engines here
-		Services.delay(Clock.getRealtimeClock().getTime().add(burnDuration));
 	}
 }

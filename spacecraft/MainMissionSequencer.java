@@ -32,6 +32,7 @@ public class MainMissionSequencer extends MissionSequencer<Mission>
 	public MainMissionSequencer(PriorityParameters pp, StorageParameters sp)
 	{
 		super(pp, sp);
+		Console.println("MainMissioNSequencer: constructor");
 		returnedMission = false;
 	}
 

@@ -32,7 +32,8 @@ public class LandingGearHandler extends AperiodicEventHandler
 	public LandingGearHandler(PriorityParameters priority, AperiodicParameters release,
 			StorageParameters storage, LandMission landMission)
 	{
-		super(priority, release, storage, "Landing Gear Handler");
+//		super(priority, release, storage, "Landing Gear Handler");
+		super(priority, release, storage);
 		
 		mission = landMission; 
 	}
@@ -45,6 +46,6 @@ public class LandingGearHandler extends AperiodicEventHandler
 	{
 		Console.println("Deploying Landing Gear");
 		
-		mission.deployLandingGear();
+//		mission.deployLandingGear();
 	}	
 }
