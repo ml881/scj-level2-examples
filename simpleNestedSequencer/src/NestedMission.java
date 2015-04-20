@@ -8,7 +8,7 @@ package scjlevel2examples.simpleNestedSequencer;
 import javax.realtime.AperiodicParameters;
 import javax.realtime.PriorityParameters;
 import javax.safetycritical.Mission;
-import javax.safetycritical.OneShotEventHandler;
+
 import javax.scj.util.Const;
 
 import devices.Console;
@@ -22,18 +22,12 @@ public class NestedMission extends Mission
 		Console.println("Launch Mission: Init ");
 
 		// Initially false because the conditions haven't been checked yet
-		new OneShotEventHandler(new PriorityParameters(5),
+		NestedOneShotEventHandler nestedOneShot =  new NestedOneShotEventHandler(new PriorityParameters(5),
+				new HighResolutionTime(5),				
 				new AperiodicParameters(),
-				TestSafelet.storageParameters_Schedulable)
-		{
-
-			@Override
-			public void handleAsyncEvent()
-			{
-				Console.println("Nested One-Shot: Release");
-
-			}
-		};
+				TestSafelet.storageParameters_Schedulable);
+	
+		nestedOneShot.register();
 
 		Console.println("Launch Mission: Begin ");
 	}
