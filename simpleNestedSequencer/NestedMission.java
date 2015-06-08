@@ -24,11 +24,11 @@ public class NestedMission extends Mission
 		Console.println("Launch Mission: Init ");
 
 		// Initially false because the conditions haven't been checked yet
-		NestedOneShotEventHandler nestedOneShot =  new NestedOneShotEventHandler(new PriorityParameters(5),
-				new RelativeTime(5, 0),				
+		NestedOneShotEventHandler nestedOneShot = new NestedOneShotEventHandler(
+				new PriorityParameters(5), new RelativeTime(5, 0),
 				new AperiodicParameters(),
 				TestSafelet.storageParameters_Schedulable);
-	
+
 		nestedOneShot.register();
 
 		Console.println("Launch Mission: Begin ");

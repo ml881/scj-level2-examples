@@ -4,19 +4,19 @@ import javax.realtime.PriorityParameters;
 import javax.safetycritical.ManagedThread;
 import javax.safetycritical.StorageParameters;
 
+import devices.Console;
+
 public class Reader extends ManagedThread
 {
-	private final Writer writer;
 	private final FlatBufferMission fbMission;
 
 	public Reader(PriorityParameters priority, StorageParameters storage,
-			FlatBufferMission fbMission, Writer writer)
+			FlatBufferMission fbMission)
 	{
 		super(priority, storage);
 
 		this.fbMission = fbMission;
-		this.writer = writer;
-	}
+			}
 
 	public synchronized void notifyReader()
 	{
@@ -25,7 +25,7 @@ public class Reader extends ManagedThread
 
 	public synchronized void run()
 	{
-		System.out.println("Reader!");
+		Console.println("Reader!");
 
 		while (!fbMission.terminationPending())
 		{
@@ -36,7 +36,7 @@ public class Reader extends ManagedThread
 					fbMission.waitOnMission();
 				}
 
-				System.out.println("I Read: " + fbMission.read());
+				Console.println("I Read: " + fbMission.read());
 
 				fbMission.notifyOnMission();
 			}

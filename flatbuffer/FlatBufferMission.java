@@ -5,33 +5,31 @@ import javax.safetycritical.Mission;
 import javax.safetycritical.StorageParameters;
 import javax.scj.util.Const;
 
+import devices.Console;
+
 public class FlatBufferMission extends Mission
 {
 	private volatile int[] buffer;
-	private Writer writer;
-	private Reader reader;
 
 	public FlatBufferMission()
 	{
 		buffer = new int[1];
 		buffer[0] = 0;
 
-		System.out.println("FlatBufferMission");
+		Console.println("FlatBufferMission");
 	}
 
 	protected void initialize()
 	{
-		StorageParameters storageParameters = new StorageParameters(1048576,
-				new long[] { Const.HANDLER_STACK_SIZE }, 1048576, 1048576,
-				Const.MISSION_MEM_DEFAULT - 100 * 1000);
+		StorageParameters storageParameters = new StorageParameters(150 * 1000, new long[] { Const.HANDLER_STACK_SIZE },
+				 Const.PRIVATE_MEM_DEFAULT, Const.IMMORTAL_MEM_DEFAULT, Const.MISSION_MEM_DEFAULT-100*1000);
 
-		reader = new Reader(new PriorityParameters(5), storageParameters, this,
-				writer);
+		new Reader(new PriorityParameters(5), storageParameters, this).register();
+		
 
-		writer = new Writer(new PriorityParameters(5), storageParameters, this,
-				reader);
+		new Writer(new PriorityParameters(5), storageParameters, this).register();
 
-		System.out.println("FlatBufferMission init");
+		Console.println("FlatBufferMission init");
 	}
 
 	public boolean bufferEmpty()

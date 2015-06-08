@@ -5,6 +5,8 @@ import javax.safetycritical.Mission;
 import javax.safetycritical.MissionSequencer;
 import javax.safetycritical.StorageParameters;
 
+import devices.Console;
+
 public class FlatBufferMissionSequencer extends MissionSequencer<Mission>
 {
 	private boolean returnedMission;
@@ -18,7 +20,7 @@ public class FlatBufferMissionSequencer extends MissionSequencer<Mission>
 
 	protected Mission getNextMission()
 	{
-		System.out.println("FlatBufferMissionSequencer");
+		Console.println("FlatBufferMissionSequencer");
 
 		// As this sequencer only delivers one mission,
 		// if it has not been returned yet then return it,
@@ -26,7 +28,7 @@ public class FlatBufferMissionSequencer extends MissionSequencer<Mission>
 
 		if (!returnedMission)
 		{
-			System.out.println("FlatBufferMissionSequencer returns mission");
+			Console.println("FlatBufferMissionSequencer returns mission");
 			returnedMission = true;
 			return new FlatBufferMission();
 		}
