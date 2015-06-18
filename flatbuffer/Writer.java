@@ -19,7 +19,7 @@ public class Writer extends ManagedThread
 		this.fbMission = fbMission;
 	}
 
-	public synchronized void run()
+	public void run()
 	{
 		Console.println("Writer!");
 
@@ -27,15 +27,14 @@ public class Writer extends ManagedThread
 		{
 			try
 			{
-				while (!fbMission.bufferEmpty())
+				while (!fbMission.bufferEmpty("Writer"))
 				{
-					fbMission.waitOnMission();
+					fbMission.waitOnMission("Writer");
 				}
 
 				fbMission.write(i);
 				i++;
 
-				fbMission.notifyOnMission();
 			} catch (InterruptedException ie)
 			{
 				// Handle Interruption

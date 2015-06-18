@@ -16,14 +16,14 @@ public class Reader extends ManagedThread
 		super(priority, storage);
 
 		this.fbMission = fbMission;
-			}
+	}
 
 	public synchronized void notifyReader()
 	{
 		notify();
 	}
 
-	public synchronized void run()
+	public void run()
 	{
 		Console.println("Reader!");
 
@@ -31,18 +31,17 @@ public class Reader extends ManagedThread
 		{
 			try
 			{
-				while (fbMission.bufferEmpty())
+				while (fbMission.bufferEmpty("Reader"))
 				{
-					fbMission.waitOnMission();
+					fbMission.waitOnMission("Reader");
 				}
 
-				Console.println("I Read: " + fbMission.read());
+				Console.println("Reader Read " + fbMission.read()
+						+ " from Buffer");	
 
-				fbMission.notifyOnMission();
-			}
-			catch (InterruptedException ie)
+			} catch (InterruptedException ie)
 			{
-				//Handle Interruption
+				// Handle Interruption
 			}
 
 		}

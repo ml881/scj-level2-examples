@@ -9,55 +9,57 @@ import devices.Console;
 
 public class FlatBufferMission extends Mission
 {
-	private volatile int[] buffer;
+
+	private volatile int buffer;
 
 	public FlatBufferMission()
 	{
-		buffer = new int[1];
-		buffer[0] = 0;
-
+		buffer = 0;
 		Console.println("FlatBufferMission");
 	}
 
 	protected void initialize()
 	{
-		StorageParameters storageParameters = new StorageParameters(150 * 1000, new long[] { Const.HANDLER_STACK_SIZE },
-				 Const.PRIVATE_MEM_DEFAULT, Const.IMMORTAL_MEM_DEFAULT, Const.MISSION_MEM_DEFAULT-100*1000);
+		StorageParameters storageParameters = new StorageParameters(150 * 1000,
+				new long[] { Const.HANDLER_STACK_SIZE },
+				Const.PRIVATE_MEM_DEFAULT, Const.IMMORTAL_MEM_DEFAULT,
+				Const.MISSION_MEM_DEFAULT - 100 * 1000);
 
-		new Reader(new PriorityParameters(5), storageParameters, this).register();
-		
+		new Reader(new PriorityParameters(10), storageParameters, this).register();
 
-		new Writer(new PriorityParameters(5), storageParameters, this).register();
+		new Writer(new PriorityParameters(10), storageParameters, this).register();
 
 		Console.println("FlatBufferMission init");
 	}
 
-	public boolean bufferEmpty()
+	public boolean bufferEmpty(String name)
 	{
-		return buffer[0] == 0;
+		Console.println(name + " Checking Buffer Empty");
+		return buffer == 0;
 	}
 
 	public synchronized void write(int update)
 	{
-		buffer[0] = update;
+		Console.println("writing " + update + " to Buffer");
+		buffer = update;
+		this.notify();
 	}
 
 	public synchronized int read()
 	{
-		int out = buffer[0];
-		this.buffer[0] = 0;
-
+		int out = buffer;
+		Console.println("Reading " + out + " from Buffer");
+		buffer = 0;
+		this.notify();
+		
 		return out;
 	}
-	
-	public synchronized void waitOnMission() throws InterruptedException
+
+	public synchronized void waitOnMission(String name)
+			throws InterruptedException
 	{
+		Console.println(name + " Waiting on Mission");
 		this.wait();
-	}
-	
-	public synchronized void notifyOnMission() throws InterruptedException
-	{
-		this.notify();
 	}
 
 	public long missionMemorySize()
