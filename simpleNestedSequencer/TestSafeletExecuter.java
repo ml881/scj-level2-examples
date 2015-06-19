@@ -6,38 +6,24 @@
  */
 package scjlevel2examples.simpleNestedSequencer;
 
-import javax.safetycritical.Launcher;
-import javax.safetycritical.Mission;
-import javax.safetycritical.Safelet;
-import javax.scj.util.Const;
+import javax.safetycritical.LaunchLevel2;
 
 import devices.Console;
 
-
-public class TestSafeletExecuter extends Launcher
+public class TestSafeletExecuter
 {
-	/**
-	 * Class Constructor
-	 * 
-	 * @param arg0
-	 *            The Safelet to execute
-	 */
-	public TestSafeletExecuter(Safelet<Mission> safelet)
-	{
-		super(safelet, 2);
-	}
 
 	/**
 	 * Runs the Safelet, which starts the application
 	 */
 	public static void main(String[] args)
 	{
-//		Const.BACKING_STORE_SIZE=16000000 ;
-//		Const.IMMORTAL_MEM_SIZE = Const.BACKING_STORE_SIZE /2 ;
-				
-				
+		// Const.BACKING_STORE_SIZE=16000000 ;
+		// Const.IMMORTAL_MEM_SIZE = Const.BACKING_STORE_SIZE /2 ;
+
 		Console.println("Launcher");
-		
-		new TestSafeletExecuter(new TestSafelet()).run();
+
+		// new TestSafeletExecuter().run();
+		new LaunchLevel2(new TestSafelet());
 	}
 }
